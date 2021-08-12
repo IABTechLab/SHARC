@@ -18,5 +18,5 @@ Our aim for this project is to take the best of both SafeFrame and MRAID worlds 
 Transparency for all parties, a clean and seamless rich ad experience that just works, and the ability to write one ad that can be served anywhere will save everyone a lot of headache and frustration. 
 
 ## Join us!
-To bring SHARC to life, we need your help.  SHARC is in the beginning phase of development. As of July 2021, we’re working on a proof of concept based on some initial use cases and requirements. As part of the IAB Open Source initiative, anyone can participate.
+To bring SHARC to life, we need your help.  SHARC is in the beginning phase of development. As of July 2021, we’re working on a proof of concept based on some initial use cases and requirements. As part of the IAB Open Source initiative, anyone can participate. Email [Katie Stroud](mailto:katie@iabtechlab.com)
 
