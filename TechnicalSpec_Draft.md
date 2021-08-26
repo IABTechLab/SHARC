@@ -66,6 +66,7 @@ Adoption: How to handle compatibility issues with current standards (MRAID, SF, 
 ### Events
 
 #Appendix
+
 ## Glossary
 TBD
 ## Collateral
