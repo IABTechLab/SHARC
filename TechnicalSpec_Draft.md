@@ -27,7 +27,7 @@ Todo
 * Scope (in/out)
 * short-term/long-term goals
 
-#Guiding principles
+# Guiding principles
 * Performance
 * Industry standards interoperability 
 * Consumer protection
@@ -65,7 +65,7 @@ Adoption: How to handle compatibility issues with current standards (MRAID, SF, 
 ### Tracking
 ### Events
 
-#Appendix
+# Appendices
 
 ## Glossary
 TBD
