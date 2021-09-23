@@ -72,7 +72,8 @@ value,
 Additional data associated with this resolve message.
 
 Example of resolve message:
-```{
+```
+{
     sessionId: "173378a4-b2e1-11e9-a2a3-2a2ae2dbcce4",
     messageId: 10,
     timestamp: 1564501643047,
@@ -83,7 +84,8 @@ Example of resolve message:
             id: 45
         }
     }
-}```
+}
+```
 
 ###8.2.2. reject Messages
 When the receiver is unable to process the message, it responds with rejection.
