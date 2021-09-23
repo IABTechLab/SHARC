@@ -87,7 +87,7 @@ Example of resolve message:
 }
 ```
 
-###8.2.2. reject Messages
+### 8.2.2. reject Messages
 When the receiver is unable to process the message, it responds with rejection.
 
 Message.type must be reject.
@@ -123,27 +123,26 @@ Example of reject message:
     }
 }
 ```
-
-##8.3. Transport Layer
+## 8.3. Transport Layer
 Transport is a communication mechanism that can send serialized messages between two parties.
 
-###8.3.1. postMessage Transport
+### 8.3.1. postMessage Transport
 In HTML environments, where the player loads creative overlay in a cross-origin iframe, the parties utilize the standard Window.postMessage() API as the message transport mechanism.
 
-###8.3.2. Message Serialization
+### 8.3.2. Message Serialization
 The message sender serializes data into a JSON string. The deserialized JSON must result in a clone of the original Message data object.
 
 In JavaScript, JSON.stringify() performs serialization; JSON.parse() - deserialization.
 
-##8.4. Session Layer
+## 8.4. Session Layer
 The media player may manage several ads that are in different phases of their lifespans; multiple concurrent sessions may be active. For example, while the player is rendering ad-A, it preloads and engages ad-B. Simultaneous two-way communication between the player and both ads persists.
 
 Each session has a unique identifier. All messages that belong to a specific session must reference the same session id.
 
-###8.4.1 Establishing a New Session
+### 8.4.1 Establishing a New Session
 SIMID delegates the session initialization to the creative overlay. The creative generates a unique session id and posts the first session message with the Message.type createSession. By posting the createSession message, the creative acknowledges its readiness to receive messages from the player.
 
-####Note: There is no expectation for the interactive component to be entirely able to participate in ad rendering at the time the creative signals createSession message. Full creative initialization may occur at later stages when the player provides complete data - see § 4.3.7 SIMID:Player:init.
+#### Note: There is no expectation for the interactive component to be entirely able to participate in ad rendering at the time the creative signals createSession message. Full creative initialization may occur at later stages when the player provides complete data - see § 4.3.7 SIMID:Player:init.
 
 Example of createSession Message data:
 ```
@@ -161,7 +160,7 @@ The player responds to createSession with a resolve message.
 
 <Insert Diagram>
 
-###8.4.2. Session Establishing Delays and Failures
+### 8.4.2. Session Establishing Delays and Failures
 
 Typically, the player should wait for the creative to post a createSession message before proceeding to the simultaneous rendering of both ad media and the interactive component. However, SIMID recognizes scenarios when:
 
