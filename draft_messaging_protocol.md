@@ -8,13 +8,15 @@ SIMID messages transport data. In HTML environments, the data is the message arg
 
 ### 8.1.1. Data Structure
 The message data implements the following data structure:
-```dictionary Message {
+```
+dictionary Message {
 	required DOMString sessionId;
 	required unsigned long messageId;
 	required unsigned long timestamp;
 	required DOMString type;
 	any args;
-};```
+}
+```
 sessionId,
 A string that uniquely identifies the session to which Message belongs. See § 8.4 Session Layer.
 
