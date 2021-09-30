@@ -1,7 +1,7 @@
-# DRAFT INSPRIATION FROM SHARC
+# DRAFT INSPRIATION FROM SIMID
 
 # Messaging Protocol
-In SHARC, the media player and the creative overlay communicate by exchanging asynchronous signals that maintain a custom messaging protocol. This protocol governs [8.1 Data Layer](8.1. Data Layer), [8.3 Transport Layer](8.3 Transport Layer), and [8.4 Session Layer](8.4 Session Layer).
+In SHARC, the media player and the creative overlay communicate by exchanging asynchronous signals that maintain a custom messaging protocol. This protocol governs [8.1 Data Layer](#81-data-layer), [8.3 Transport Layer](8.3 Transport Layer), and [8.4 Session Layer](8.4 Session Layer).
 
 ## 8.1. Data Layer
 SHARC messages transport data. In HTML environments, the data is the ``message` argument of the Window.postMessage() function.
