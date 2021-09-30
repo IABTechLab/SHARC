@@ -93,7 +93,7 @@ When the receiver is unable to process the message, it responds with rejection.
 
 `Message.type` must be reject.
 
-``Message.args.value` must be a `RejectMessageArgsValue` object:
+`Message.args.value` must be a `RejectMessageArgsValue` object:
 
 ```
 dictionary RejectMessageArgsValue {
