@@ -1,7 +1,7 @@
 # DRAFT INSPRIATION FROM SIMID
 
 # Messaging Protocol
-In SHARC, the media player and the creative overlay communicate by exchanging asynchronous signals that maintain a custom messaging protocol. This protocol governs [8.1 Data Layer](#81-data-layer), [8.3 Transport Layer](8.3 Transport Layer), and [8.4 Session Layer](8.4 Session Layer).
+In SHARC, the media player and the creative overlay communicate by exchanging asynchronous signals that maintain a custom messaging protocol. This protocol governs [8.1 Data Layer](#81-data-layer), [8.3 Transport Layer](#83-transport-layer), and [8.4 Session Layer](#84-session-layer).
 
 ## 8.1. Data Layer
 SHARC messages transport data. In HTML environments, the data is the `message` argument of the Window.postMessage() function.
@@ -18,7 +18,7 @@ dictionary Message {
 }
 ```
 `sessionId`
-A string that uniquely identifies the session to which Message belongs. See [8.4 Session Layer](8.4 Session Layer).
+A string that uniquely identifies the session to which Message belongs. See [8.4 Session Layer](#84-session-layer).
 
 `messageId`
 A message sequence number in the sender’s system. Each participant establishes its own independent sequence counter for the session. The first message `messageId` value is `0`. The sender increments each subsequent messageId value by `1`. In practice, this means that the creative and the player `messageId` values will be different based on the number of sent messages.
@@ -49,9 +49,9 @@ Example of message data:
 The protocol defines two message classes:
 
 - Primary messages - the signals triggered by the sender’s internal logic.
-- Response messages - the signals the receiver transmits as acknowledgments of the primary message receipt and processing. There are two response Message types: [8.2.1 resolve Messages](8.2.1 resolve Messages) and [8.2.2 reject Messages](8.2.2 reject Messages).
+- Response messages - the signals the receiver transmits as acknowledgments of the primary message receipt and processing. There are two response Message types: [8.2.1 resolve Messages](#821- resolve-messages) and [8.2.2 reject Messages](#822-reject-messages).
 
-Both primary and response messages implement the same data structure (see [8.1.1 Data Structure](8.1.1 Data Structure)).
+Both primary and response messages implement the same data structure (see [8.1.1 Data Structure](#811-data-structure)).
 
 ### 8.2.1. resolve Messages
 The receiver confirms successful message processing by replying with a resolution message.
