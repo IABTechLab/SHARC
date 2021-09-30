@@ -4,7 +4,7 @@
 In SHARC, the media player and the creative overlay communicate by exchanging asynchronous signals that maintain a custom messaging protocol. This protocol governs [8.1 Data Layer](#81-data-layer), [8.3 Transport Layer](8.3 Transport Layer), and [8.4 Session Layer](8.4 Session Layer).
 
 ## 8.1. Data Layer
-SHARC messages transport data. In HTML environments, the data is the ``message` argument of the Window.postMessage() function.
+SHARC messages transport data. In HTML environments, the data is the `message` argument of the Window.postMessage() function.
 
 ### 8.1.1. Data Structure
 The `message` data implements the following data structure:
