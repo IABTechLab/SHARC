@@ -49,7 +49,7 @@ Example of message data:
 The protocol defines two message classes:
 
 - Primary messages - the signals triggered by the sender’s internal logic.
-- Response messages - the signals the receiver transmits as acknowledgments of the primary message receipt and processing. There are two response Message types: [8.2.1 resolve Messages](#821- resolve-messages) and [8.2.2 reject Messages](#822-reject-messages).
+- Response messages - the signals the receiver transmits as acknowledgments of the primary message receipt and processing. There are two response Message types: [8.2.1 resolve Messages](821-resolve-messages) and [8.2.2 reject Messages](#822-reject-messages).
 
 Both primary and response messages implement the same data structure (see [8.1.1 Data Structure](#811-data-structure)).
 
