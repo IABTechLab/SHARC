@@ -56,7 +56,7 @@ Both primary and response messages implement the same data structure (see [8.1.1
 ### 8.2.1. resolve Messages
 The receiver confirms successful message processing by replying with a resolution message.
 
-`Message.type` must be resolve.
+`Message.type` must be `resolve`.
 
 `Message.args` must be a `ResolveMessageArgs` object:
 ```
@@ -91,7 +91,7 @@ Example of `resolve` message:
 ### 8.2.2. reject Messages
 When the receiver is unable to process the message, it responds with a rejection.
 
-`Message.type` must be reject.
+`Message.type` must be `reject`.
 
 `Message.args.value` must be a `RejectMessageArgsValue` object:
 
