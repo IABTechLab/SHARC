@@ -163,9 +163,9 @@ The container responds to `createSession` with a `resolve` message.
 
 ### 8.4.2. Session Establishing Delays and Failures
 
-Typically, the container must wait for the creative to post a createSession message. However, SHARC recognizes that a container will have a specific timeout to ensure that the ad experience for a consumer is maintained. In this scenario, the container can unload the existing creative and load a new one or an additional behavior for a good consumer experience. The series of events are as follows:
+Typically, the container must wait for the creative to post a `createSession` message. However, SHARC recognizes that a container may have a specific timeout to ensure that the ad experience for a consumer is maintained. In this scenario, the container can unload the existing creative and load a new one, or provide an alternative behavior to preserve a good consumer experience. The series of events are as follows:
 	
-The timeout expires.
-The createSession message does not arrive.
-The container unloads the creative.
-The container elects to collapse its view.
+* The timeout expires.
+* The `createSession` message does not arrive.
+* The container unloads the creative.
+* The container elects to collapse its view.
