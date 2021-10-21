@@ -136,14 +136,14 @@ The message sender serializes data into a JSON string. The deserialized JSON mus
 In JavaScript, `JSON.stringify()` performs serialization; `JSON.parse()` - deserialization.
 
 ## 8.4. Session Layer
-The container may manage several ads that are in different phases of their lifespans; multiple concurrent sessions may be active. For example, while the container is rendering ad-A, it preloads and engages ad-B. Simultaneous two-way communication between the player and both ads persists.
+The container may manage several ads that are in different phases of their lifecycle; multiple concurrent sessions may be active. For example, while the container is rendering ad-A, it preloads and engages ad-B. Simultaneous two-way communication between the player and both ads persists.
 
 Each session has a unique identifier. All messages that belong to a specific session must reference the same session id.
 
 ### 8.4.1 Establishing a New Session
-SHARC delegates the session initialization to the container. The creative generates a unique session id and posts the first session message with the Message.type createSession. By posting the createSession message, the creative acknowledges its readiness to receive messages from the container.
+SHARC delegates the session initialization to the container. The creative generates a unique session id and posts the first session message with the Message.type `createSession`. By posting the `createSession` message, the creative acknowledges its readiness to receive messages from the container.
 
-#### Note: There is no expectation for the interactive creative component to be entirely able to participate in ad rendering at the time the creative signals createSession message. Full creative initialization may occur at later stages when the container provides complete data - see <link somewhere else> SHARC:Player:init.
+#### Note: There is no expectation for the interactive creative component to be entirely able to participate in ad rendering at the time the creative signals `createSession` message. Full creative initialization may occur at later stages when the container provides complete data - see <link somewhere else> SHARC:Container:init.
 
 Example of `createSession` Message data:
 ```
