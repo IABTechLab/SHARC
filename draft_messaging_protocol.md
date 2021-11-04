@@ -3,9 +3,9 @@
 # API Reference
 
 ## SHARC:Container:init
-The purpose of the SIMID:player:init message is to transport data to assist with the interactive component initialization. See § 6.2 Typical Initialization WorkFlow and § 6.4 Uninterrupted Initialization WorkFlow.
+The purpose of the SHARC:Container:init message is to transport data to assist with the creative initialization process. See § 6.2 Typical Initialization WorkFlow and § 6.4 Uninterrupted Initialization WorkFlow. (TODO)
 
-The creative must respond to Player:init with either § 4.3.7.1 resolve or § 4.3.7.2 reject.
+The creative must respond to the SHARC:Container:init message with either § 4.3.7.1 resolve or § 4.3.7.2 reject. (TODO)
 ```
 dictionary MessageArgs
  {
@@ -14,8 +14,8 @@ dictionary MessageArgs
 };
 
 environmentData,
-    Information about publisher’s environment and media player capacities. 
-creativeData,
+    Information about container's environment and capacities. 
+creativeData, // TODO: I don't think this is needed for SHARC.
     Information that pertains to the specific creative. 
 ```
 
@@ -32,13 +32,9 @@ clickThruUrl,
 ```
 ```
 dictionary EnvironmentData {
-  required Dimensions videoDimensions;
   required Dimensions creativeDimensions;
   required boolean fullscreen;
   required boolean fullscreenAllowed;
-  required boolean variableDurationAllowed;
-  required SkippableState skippableState;
-  DOMString skipoffset;
   required DOMString version;
   DOMString siteUrl;
   DOMString appId;
@@ -47,8 +43,7 @@ dictionary EnvironmentData {
   boolean muted;
   float volume;
   NavigationSupport navigationSupport;
-  CloseButtonSupport closeButtonSupport;
-  float nonlinearDuration;
+  CloseButtonSupport closeButtonSupport; //Need to think about this (TODO)
 };
 
 dictionary Dimensions {
@@ -62,84 +57,27 @@ enum SkippableState {"playerHandles", "adHandles", "notSkippable"};
 enum NavigationSupport {"adHandles", "playerHandles", "notSupported"};
 enum CloseButtonSupport {"adHandles", "playerHandles"};
 
-videoDimensions,
-    Communicates media element coordinates and size. -1 indicates an unknown value. 
 creativeDimensions,
-    Communicates creative iframe coordinates and size the player will set when iframe becomes visible. -1 indicates an unknown value. 
+    Communicates container coordinates and size when the container is present in the view hiearchy. -1 indicates an unknown value. 
 fullscreen,
-    The value true indicates that the player is currently in fullscreen mode. 
+    The value true indicates that the container is currently in fullscreen mode. 
 fullscreenAllowed,
-    Communicates the player’s capacity to toggle screen modes.
+    Communicates the container's capacity to toggle screen modes.
 
         The value true indicates that creative may request screen mode change.
-        The value false denotes that the player will reject calls to change screen mode.* 
-
-variableDurationAllowed,
-    Communicates player’s capacities† to:
-
-        interrupt ad playback progress – the ability to pause the media;
-        extend ad user experience length beyond ad media duration after ad playback completion;
-        accommodate creative’s ad stop request. 
-
-    The value true asserts that the player can:
-
-        pause media playback in response to creative’s requests;
-        extend ad experience after media playback completion (and abstaining from ad unloading) if the creative posts ad duration change instructions;
-        accommodate creative’s ad stop request.‡ 
-
-skippableState,
-    Expresses:
-
-        player’s ability to skip the ad;†
-        VAST skippability-associated instructions logic management;
-
-    button handling delegation. 
-
-The value playerHandles indicates that all of the following applies:
-
-    the publisher controls skippability logic (including handling of VAST skipoffset directives);
-    either VAST contains skipoffset or the skippability is the publisher-administered behavior;
-    the player implements the 
-
-    button;
-    the player will ignore skip requests from the creative. 
-
-The value adHandles signals that the player:
-
-    can skip the ad;
-    does not implement internal 
-
-    button;
-    disregards VAST skippability directives;
-    will skip the ad in response to § 4.4.16 SIMID:Creative:requestSkip message.§ 
-
-The value notSkippable declares that the player:
-
-    cannot skip the ad;
-    ignores VAST skippability instructions;
-    will disregard skip request from the creative. 
-
-With both playerHandles and notSkippable, the creative avoids the
-    button drawing. 
-skipoffset,
-    Optional parameter that communicates the time the ad becomes skippable for the current session.
-
-    The skipoffset value format is "HH:MM:SS" or "HH:MM:SS.mmm".
-    The value can differ from the skipoffset in the VAST response when the player controls skippability. If the parameter’s skippableState value is "adHandles", the creative must display the 
-
-    button when media playback arrives at the time specified by the skipoffset parameter. 
+        The value false denotes that the container will reject calls to change screen mode.* 
 version,
-    The SIMID version the player implements. 
+    The SHARC version the container implements. 
 muted,
-    true if the player § is muted.◊ 
+    true if the environment § is muted.◊ 
 volume,
-    player’s § volume – expressed as a number between 0 and 1.0. 
+    environment's § volume – expressed as a number between 0 and 1.0. 
 siteUrl,
     The URI of the publisher’s site. May be full or partial URL. 
 appId,
     The ID of the mobile app, if applicable. 
 useragent,
-    The information about SDKs as well as the player’s vendor and version. The value should comply with VAST-specified conventions. 
+    The information about SDKs as well as the player’s vendor and version. The value should comply with VAST-specified conventions. (TODO)
 deviceId,
     IDFA or AAID 
 NavigationSupport,
@@ -165,12 +103,12 @@ nonlinearDuration,
     SIMID does not expect device audio state information.
     Values of muted and volume are independent. While the player is muted, volume can be greater than zero; the volume zero does not mean the player is muted. 
 
-4.3.7.1. resolve
+### resolve
 
 The creative acknowledges the initialization parameters.
 
 If the creative delays calling resolve, see § 6.5 Creative Delays Resolving Init.
-4.3.7.2. reject
+### reject
 
 The creative may respond with a reject based on its internal logic.
 ```
