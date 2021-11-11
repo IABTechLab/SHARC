@@ -3,7 +3,7 @@
 # API Reference
 
 ## SHARC:Container:init
-The purpose of the SHARC:Container:init message is to transport data to assist with the creative initialization process. See § 6.2 Typical Initialization WorkFlow and § 6.4 Uninterrupted Initialization WorkFlow. (TODO)
+The purpose of the SHARC:Container:init message is to transport data to assist with the creative initialization process. See § 6.2 Typical Initialization WorkFlow and § 6.4 Uninterrupted Initialization WorkFlow. (TODO: determine where to put on doc)
 
 The creative must respond to the SHARC:Container:init message with either § 4.3.7.1 resolve or § 4.3.7.2 reject. (TODO)
 ```
@@ -16,34 +16,33 @@ dictionary MessageArgs
 environmentData,
     Information about container's environment and capacities. 
 creativeData, // TODO: I don't think this is needed for SHARC.
-    Information that pertains to the specific creative. 
+    Information that pertains to the specific creative. Technical data only; no details on brand safety, etc.
 ```
 
 ```
-dictionary CreativeData {
-  required DOMString adParameters;
-  DOMString clickThruUrl;
-};
+dictionary metadata {
+  required DOMString adParameters; // placeholder; will not be this
+  DOMString clickThruUrl; // placeholder; will not be this
+}; // TODO: determine use cases for this. Data that is not about the environment but additional data that might be needed (enriched data). Determine list of metadata to use.
 
-adParameters,
-    Typically, the value of VAST <AdParameters> node. 
-clickThruUrl,
-    Value of VAST <ClickThrough> node. 
 ```
+
 ```
-dictionary EnvironmentData {
-  required Dimensions creativeDimensions;
+dictionary environmentData {
+  required Dimensions creativeDimensions; 
   required boolean fullscreen;
-  required boolean fullscreenAllowed;
+  required boolean fullscreenAllowed; // Discussion: should fullscreen always be allowed?
   required DOMString version;
   DOMString siteUrl;
   DOMString appId;
-  DOMString useragent;
   DOMString deviceId;
   boolean muted;
   float volume;
-  NavigationSupport navigationSupport;
-  CloseButtonSupport closeButtonSupport; //Need to think about this (TODO)
+  DOMString sdk; // the company and product or service making the request
+  DOMString sdkVersion;
+  dictionary identityData; // any data for identifying things like GDPR string, etc. TODO: more to flesh out? document list of possibilities. (MRAID had "limit tracking" for example)
+  NavigationSupport navigationSupport; // Do we include this and how do we define it? This is about the click and who handles it: container or creative. Note: consider a compatibility mode that allows non-SHARC creative to execute in SHARC container.
+  CloseButtonSupport closeButtonSupport; // container ALWAYS handles this and not allow creative to operate. But container could offer options such: white for black bkgd, or black for white background, or left/right, etc. Might not be a button; might be a swipe or other gesture. This data point not needed because it will be understood that container always provides close, but other creative doc needed on things like how to provide the close button/option, creative, communication, tech operation.
 };
 
 dictionary Dimensions {
@@ -51,11 +50,11 @@ dictionary Dimensions {
   required long y;
   required long width;
   required long height;
-};
+}; // density-independent pixels
 
-enum SkippableState {"playerHandles", "adHandles", "notSkippable"};
-enum NavigationSupport {"adHandles", "playerHandles", "notSupported"};
-enum CloseButtonSupport {"adHandles", "playerHandles"};
+
+enum NavigationSupport {"adHandles", "containerHandles", "notSupported"}; // TODO: determine how clicks handled and what options offered
+enum CloseButtonSupport {"adHandles", "playerHandles"}; // TODO: update to possibly provide close options
 
 creativeDimensions,
     Communicates container coordinates and size when the container is present in the view hiearchy. -1 indicates an unknown value. 
