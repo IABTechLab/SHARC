@@ -10,28 +10,23 @@ The creative must respond to the SHARC:Container:init message with either § 4
 dictionary MessageArgs
  {
   required EnvironmentData environmentData;
-  required CreativeData creativeData;
+  required MetaData metaData;
+  optional IdentifyData identityData;
 };
 
 environmentData,
     Information about container's environment and capacities. 
-creativeData, // TODO: I don't think this is needed for SHARC.
-    Information that pertains to the specific creative. Technical data only; no details on brand safety, etc.
-```
-
-```
-dictionary metadata {
-  required DOMString adParameters; // placeholder; will not be this
-  DOMString clickThruUrl; // placeholder; will not be this
-}; // TODO: determine use cases for this. Data that is not about the environment but additional data that might be needed (enriched data). Determine list of metadata to use.
-
+metaData,
+    Information about how to handle certain types of clickthroughs and other specific user workflow items //TODO: Revisit use cases
+identityData
+    Information about the specific user or device.
 ```
 
 ```
 dictionary environmentData {
-  required Dimensions creativeDimensions; 
+  required Dimensions containerDimensions; 
   required boolean fullscreen;
-  required boolean fullscreenAllowed; // Discussion: should fullscreen always be allowed?
+  required boolean fullscreenAllowed; // TODO: Follow up on this
   required DOMString version;
   DOMString siteUrl;
   DOMString appId;
@@ -42,7 +37,7 @@ dictionary environmentData {
   DOMString sdkVersion;
   dictionary identityData; // any data for identifying things like GDPR string, etc. TODO: more to flesh out? document list of possibilities. (MRAID had "limit tracking" for example)
   NavigationSupport navigationSupport; // Do we include this and how do we define it? This is about the click and who handles it: container or creative. Note: consider a compatibility mode that allows non-SHARC creative to execute in SHARC container.
-  CloseButtonSupport closeButtonSupport; // container ALWAYS handles this and not allow creative to operate. But container could offer options such: white for black bkgd, or black for white background, or left/right, etc. Might not be a button; might be a swipe or other gesture. This data point not needed because it will be understood that container always provides close, but other creative doc needed on things like how to provide the close button/option, creative, communication, tech operation.
+  CloseInteractionSupport closeInteractionSupport; // container ALWAYS handles this and not allow creative to operate. But container could offer options such: white for black bkgd, or black for white background, or left/right, etc. Might not be a button; might be a swipe or other gesture. This data point not needed because it will be understood that container always provides close, but other creative doc needed on things like how to provide the close button/option, creative, communication, tech operation.
 };
 
 dictionary Dimensions {
@@ -53,10 +48,11 @@ dictionary Dimensions {
 }; // density-independent pixels
 
 
-enum NavigationSupport {"adHandles", "containerHandles", "notSupported"}; // TODO: determine how clicks handled and what options offered
-enum CloseButtonSupport {"adHandles", "playerHandles"}; // TODO: update to possibly provide close options
 
-creativeDimensions,
+enum NavigationSupport {"containerHandles", "notSupported"}; // TODO: determine how clicks handled and what options offered
+enum CloseInteractionSupport {}; // TODO: update to possibly provide close options
+
+containerDimensions,
     Communicates container coordinates and size when the container is present in the view hiearchy. -1 indicates an unknown value. 
 fullscreen,
     The value true indicates that the container is currently in fullscreen mode. 
@@ -71,36 +67,41 @@ muted,
     true if the environment § is muted.◊ 
 volume,
     environment's § volume – expressed as a number between 0 and 1.0. 
+sdk,
+    Used for debugging purposes. The SDK provider. (IE: If a network provides the SDK to a publisher, put the name of the network or the specific product name)
+sdkVersion,
+    Used for debugging purposes. The SDK version that the container uses. 
 siteUrl,
     The URI of the publisher’s site. May be full or partial URL. 
 appId,
     The ID of the mobile app, if applicable. 
-useragent,
-    The information about SDKs as well as the player’s vendor and version. The value should comply with VAST-specified conventions. (TODO)
-deviceId,
-    IDFA or AAID 
-NavigationSupport,
-    Indicates how clickthroughs should be handled.
+navigationSupport,
+    Indicates how clickthroughs should be handled. //TODO: Update description when use cases are discovered.
 
-        playerHandles Indicates that because of the platform, the player should handle clickthrough via § 4.4.12 SIMID:Creative:requestNavigation. Mobile platforms are often this way.
-        adHandles Indicates that the creative should open tabs or windows in response to user clicks. Web platforms are often this way.
-        notSupported The platform does not support clickthrough. 
-
-CloseButtonSupport,
-    Indicates what should render a close button for nonlinear ads.
-
-        playerHandles Indicates the player will render a close button for nonlinear ads.
-        adHandles Indicates that the creative may render a close button. If the player will not render a close button it should always use adHandles for this parameter. 
-
-nonlinearDuration,
-    The duration in seconds that a nonlinear ad will play for. Often, this might be the same as minSuggestedDuration from the VAST response or the duration of the content. 
+closeInteractionSupport,
+    //TODO: Update description when use cases are discovered.
 ```
 
-    see § 4.4.10 SIMID:Creative:requestFullscreen and § 4.4.11 SIMID:Creative:requestExitFullscreen messages.
-    In SSAI, live broadcast, and other time-constrained environments, the player must support uninterrupted media (both content and ads) playback progress. Specifically, the player may not be able to pause the media, shorten ad, or extend user ad experience.
-    see § 4.4.13 SIMID:Creative:requestPause, § 4.4.14 SIMID:Creative:requestPlay, § 4.4.8 SIMID:Creative:requestChangeAdDuration, and § 4.4.17 SIMID:Creative:requestStop.
-    SIMID does not expect device audio state information.
-    Values of muted and volume are independent. While the player is muted, volume can be greater than zero; the volume zero does not mean the player is muted. 
+```
+dictionary MetaData {
+
+}; // TODO: determine use cases for this. Data that is not about the environment but additional data that might be needed (enriched data). Determine list of metadata to use.
+
+```
+
+```
+dictionary IdentityData {
+  DOMString ifa;
+  DOMString useragent;
+  DOMString cookieid;
+  DOMString consentString;
+
+}; // TODO: What optional information can we pass here. Note, this doesn't mean they will be, just what CAN be passed.
+
+```
+
+    SHARC does not expect device audio state information to be available at all times.
+    Values of muted and volume are independent. While the player is muted, volume can be greater than zero; the volume zero does not mean the environment is muted. 
 
 ### resolve
 
