@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>SHARC - POC</title>
+  </head>
+  <body>
+    <button id="btn-init-ad" onclick="initAd()">Init Creative</button>
+    <button id="btn-start-ad" onclick="startCreative()">Start Creative</button>
+    <div class="row">
+      <div class="column">
+        <h2 class="white-text">Events:</h2>
+        <div id="events" class="event-box"></div>
+      </div>
+      <div class="column">
+        <h2 class="white-text">Environment data:</h2>
+        <textarea id="env-data" rows="12" cols="50">
+{"fullscreen": true, "fullscreenAllowed": true, "useragent": "", "deviceId": "", "muted": true}
+        </textarea>
+      </div>
+    </div>
+    <div class="smartphone">
+      <div id="close-button" class="close_button"></div>
+      <div id="smartphone-content" class="content"></div>
+    </div>
+  </body>
+  <script src="sharc-protocol.js"></script>
+  <script src="template.js"></script>
+</html>

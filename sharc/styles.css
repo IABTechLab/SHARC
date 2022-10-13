@@ -1,0 +1,105 @@
+body {
+  background-color: #333;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+
+.column {
+  min-width: 180px;
+}
+
+.event-box {
+  min-height: 200px;
+  margin: 20px 0;
+  background: whitesmoke;
+  font-size: 1em;
+  font-family: monospace;
+  white-space: normal;
+}
+
+.white-text {
+  color: white;
+}
+/* The device with borders */
+.smartphone {
+  position: relative;
+  width: 360px;
+  height: 640px;
+  margin: auto;
+  border: 16px black solid;
+  border-top-width: 60px;
+  border-bottom-width: 60px;
+  border-radius: 36px;
+}
+
+/* The horizontal line on the top of the device */
+.smartphone:before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 5px;
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #333;
+  border-radius: 10px;
+}
+
+/* The circle on the bottom of the device */
+.smartphone:after {
+  content: '';
+  display: block;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: 50%;
+  bottom: -65px;
+  transform: translate(-50%, -50%);
+  background: #333;
+  border-radius: 50%;
+}
+
+/* The screen (or content) of the device */
+.smartphone .content {
+  width: 360px;
+  height: 640px;
+  background: white;
+}
+
+.close_button {
+  position: absolute;
+  right: 22px;
+  top: 12px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.5;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 2px;
+  cursor: pointer;
+  display: none;
+}
+.close_button:hover {
+  opacity: 0.8;
+}
+.close_button:before,
+.close_button:after {
+  position: absolute;
+  top: 7px;
+  left: 17px;
+  content: ' ';
+  height: 22px;
+  width: 3px;
+  background-color: #333;
+}
+.close_button:before {
+  transform: rotate(45deg);
+}
+.close_button:after {
+  transform: rotate(-45deg);
+}

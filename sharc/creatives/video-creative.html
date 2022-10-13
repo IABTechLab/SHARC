@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="../sharc-protocol.js"></script>
+    <script src="video-creative.js"></script>
+    <style>
+      body {
+        margin: 0;
+      }
+      .container {
+        height: 100vh;
+        position: relative;
+      }
+      .container .video {
+        position: absolute;
+        height: 50vh;
+        width: 100%;
+      }
+      .container .video video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="video">
+        <video
+          id="video_player"
+          width="100%"
+          class="content"
+          src="https://v2.chartboost.com/videoads/62a1b22b7c86d517771fb502_720-1654764076.mp4"
+          controls
+          preload="auto"
+          playsinline
+          webkit-playsinline
+        ></video>
+      </div>
+    </div>
+    <script>
+      init();
+    </script>
+  </body>
+</html>
