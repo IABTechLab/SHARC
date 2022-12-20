@@ -1,8 +1,6 @@
 <h2>Secure HTML Ad Richmedia Container (SHARC) Product Specification</h2>
 
 
-[Link to doc with additional notes and requirements ](https://docs.google.com/document/d/1-lFqvkCsoUHqsthKZIxld1OK3UoXpiFqc1NAMb9Ssl4/edit?usp=sharing)(to be removed in final doc)
-
 <h2>Overview</h2>
 
 
