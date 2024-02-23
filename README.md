@@ -46,7 +46,7 @@ Other key contributors:
 
 
 
-* Kyle Grymonprez, Twitter
+* Kyle Grymonprez, Chartboost
 * Marian Rusnak, Verizon
 * Bichen Wang, Chartboost
 * Laura Evans, Flashtalking by Media Ocean
